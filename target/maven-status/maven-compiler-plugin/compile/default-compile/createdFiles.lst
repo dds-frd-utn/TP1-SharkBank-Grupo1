@@ -1,0 +1,7 @@
+utn/frd/tibuuroncitos/rest/services/ClienteRest.class
+utn/frd/tibuuroncitos/sessions/ClienteFacade.class
+utn/frd/tibuuroncitos/entity/Cliente.class
+utn/frd/tibuuroncitos/sessions/AbstractFacade.class
+utn/frd/tibuuroncitos/resources/JavaEE8Resource.class
+utn/frd/tibuuroncitos/JAXRSConfiguration.class
+utn/frd/tibuuroncitos/rest/services/ApplicationConfig.class
