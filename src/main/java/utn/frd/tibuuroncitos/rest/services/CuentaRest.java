@@ -16,38 +16,38 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import utn.frd.tibuuroncitos.entity.Cliente;
-import utn.frd.tibuuroncitos.sessions.ClienteFacade;
+import utn.frd.tibuuroncitos.entity.Cuentas;
+import utn.frd.tibuuroncitos.sessions.CuentasFacade;
 
 /**
  *
  * @author Donayo David, Illera Ivan, Ardaiz Martina
  */
-@Path("/cliente")
-public class ClienteRest {
+@Path("/cuenta")
+public class CuentaRest {
     @EJB
-    private ClienteFacade ejbClienteFacade;
+    private CuentasFacade ejbCuentasFacade;
     
     //obtener todas las entidades
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Cliente> findAll(){
-        return ejbClienteFacade.findAll();
+    public List<Cuentas> findAll(){
+        return ejbCuentasFacade.findAll();
     }
     
     //crear entidades
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Cliente cliente){
-        ejbClienteFacade.create(cliente);
+    public void create(Cuentas cuenta){
+        ejbCuentasFacade.create(cuenta);
     }
     
     //actualizar entidades
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}")
-    public void edit(@PathParam("id")long id, Cliente cliente){
-        ejbClienteFacade.edit(cliente);
+    public void edit(@PathParam("id")long id, Cuentas cuenta){
+        ejbCuentasFacade.edit(cuenta);
     }
     
     //eliminar entidades
@@ -55,14 +55,14 @@ public class ClienteRest {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     @Path("/{id}")
     public void remove(@PathParam("id")long id){
-        ejbClienteFacade.remove( ejbClienteFacade.find(id) );
+        ejbCuentasFacade.remove(ejbCuentasFacade.find(id) );
     }
     
     //obtener una entidad por id
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Cliente findById(@PathParam("id")long id){
-        return ejbClienteFacade.find(id);
+    public Cuentas findById(@PathParam("id")long id){
+        return ejbCuentasFacade.find(id);
     }
 }

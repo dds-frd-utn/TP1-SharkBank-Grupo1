@@ -3,6 +3,9 @@
   <!-- Define Persistence Unit -->
   <persistence-unit name="my_persistence_unit" transaction-type="JTA">
     <class>utn.frd.tibuuroncitos.entity.Cliente</class>
+    <class>utn.frd.tibuuroncitos.entity.Cuentas</class>
+    <class>utn.frd.tibuuroncitos.entity.Transacciones</class>
     <jta-data-source>jdbc/dds_tiburones_tp1</jta-data-source>
+    <class>utn.frd.tibuuroncitos.entity.Bonos</class>
   </persistence-unit>
 </persistence>

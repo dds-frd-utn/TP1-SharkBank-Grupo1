@@ -6,7 +6,10 @@
 package utn.frd.tibuuroncitos.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +17,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,6 +37,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
     @NamedQuery(name = "Cliente.findById", query = "SELECT c FROM Cliente c WHERE c.id = :id"),
     @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre"),
+    @NamedQuery(name = "Cliente.findByApellido", query = "SELECT c FROM Cliente c WHERE c.apellido = :apellido"),
+    @NamedQuery(name = "Cliente.findByDNI", query = "SELECT c FROM Cliente c WHERE c.dni = :dni"),
+    @NamedQuery(name = "Cliente.findByFechaNacimiento", query = "SELECT c FROM Cliente c WHERE c.fechaNacimiento = :fechaNacimiento"),
+    @NamedQuery(name = "Cliente.findBySituacionEco", query = "SELECT c FROM Cliente c WHERE c.situacionEco = :situacionEco"),
+    @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono"),
     @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
 public class Cliente implements Serializable {
 
@@ -37,16 +49,52 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
+    
     @Column(name = "nombre")
     private String nombre;
+    @Basic(optional = false)
+    @NotNull
     @Size(max = 255)
+
+    @Column(name = "apellido")
+    private String apellido;
+    @Basic(optional = false)
+    @NotNull
+    @Size(max = 255)
+
+    @Column(name = "dni")
+    private Integer dni;
+    @Basic(optional = false)
+    @NotNull
+    @Size(max = 8)
+    
+    @Column(name = "fechaNacimiento")
+    @Temporal(TemporalType.DATE)
+    private Date fechaNacimiento;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    
+    @Column(name = "situacionEco")
+    private String situacionEco;
+    @Basic(optional = false)
+    @NotNull
+    @Size(max = 255)
+    
+    @Column(name = "telefono")
+    private Integer telefono;
+    @Basic(optional = true)
+    @Size(max = 20)
+    
     @Column(name = "direccion")
     private String direccion;
+    @Size(max = 255)
 
     public Cliente() {
     }
@@ -55,9 +103,15 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public Cliente(Integer id, String nombre) {
+    public Cliente(Integer id, String nombre, String apellido, Integer dni, Date fechaNacimiento, String situacionEco, Integer telefono, String direccion ) {
         this.id = id;
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.fechaNacimiento = fechaNacimiento;
+        this.situacionEco = situacionEco;
+        this.telefono = telefono;
+        this.direccion = direccion;
     }
 
     public Integer getId() {
@@ -75,7 +129,47 @@ public class Cliente implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    public String getApellido() {
+        return apellido;
+    }
+    
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    
+    public Integer getDNI() {
+        return dni;
+    }
+    
+    public void setDNI(Integer dni) {
+        this.dni = dni;
+    }
+    
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+    
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+    
+    public String getSituacionEco() {
+        return situacionEco;
+    }
+    
+    public void setSituacionEco(String SituacionEco) {
+        this.situacionEco = SituacionEco;
+    }
+    
+    public Integer getTelefono() {
+        return telefono;
+    }
+    
+    public void setTelefono(Integer Telefono) {
+        this.telefono = telefono;
+    }
+    
     public String getDireccion() {
         return direccion;
     }

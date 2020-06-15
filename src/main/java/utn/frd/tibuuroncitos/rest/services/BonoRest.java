@@ -16,38 +16,38 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import utn.frd.tibuuroncitos.entity.Cliente;
-import utn.frd.tibuuroncitos.sessions.ClienteFacade;
+import utn.frd.tibuuroncitos.entity.Bonos;
+import utn.frd.tibuuroncitos.sessions.BonosFacade;
 
 /**
  *
  * @author Donayo David, Illera Ivan, Ardaiz Martina
  */
-@Path("/cliente")
-public class ClienteRest {
+@Path("/bono")
+public class BonoRest {
     @EJB
-    private ClienteFacade ejbClienteFacade;
+    private BonosFacade ejbBonosFacade;
     
     //obtener todas las entidades
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Cliente> findAll(){
-        return ejbClienteFacade.findAll();
+    public List<Bonos> findAll(){
+        return ejbBonosFacade.findAll();
     }
     
     //crear entidades
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Cliente cliente){
-        ejbClienteFacade.create(cliente);
+    public void create(Bonos bono){
+        ejbBonosFacade.create(bono);
     }
     
     //actualizar entidades
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}")
-    public void edit(@PathParam("id")long id, Cliente cliente){
-        ejbClienteFacade.edit(cliente);
+    public void edit(@PathParam("id")long id, Bonos bono){
+        ejbBonosFacade.edit(bono);
     }
     
     //eliminar entidades
@@ -55,14 +55,14 @@ public class ClienteRest {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     @Path("/{id}")
     public void remove(@PathParam("id")long id){
-        ejbClienteFacade.remove( ejbClienteFacade.find(id) );
+        ejbBonosFacade.remove(ejbBonosFacade.find(id) );
     }
     
     //obtener una entidad por id
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Cliente findById(@PathParam("id")long id){
-        return ejbClienteFacade.find(id);
+    public Bonos findById(@PathParam("id")long id){
+        return ejbBonosFacade.find(id);
     }
 }
