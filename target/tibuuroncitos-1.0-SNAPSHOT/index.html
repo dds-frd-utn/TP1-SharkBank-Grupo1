@@ -7,8 +7,14 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    
     <title>SB - Inicio</title>
+    <script src="code.js"></script>
   </head>
   <body>
     <div class="container">
@@ -17,54 +23,26 @@
                 <p>Sean bienvenidos al banco de nuestro plano pais, ESFEROPOLIS.</p>
             </div>
             <div class="row">
-                <h2>CONOCE NUESTRA DOCUMENTACION!</h2>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h4>Conocelos a Todos!</h4>
-                    <p>Para conocer a todos y cada uno de ellos, debes ingresar usando el metodo "Get" en la URL:<pre><code><a href="rest/cliente/"><span class="baseURL"></span>/rest/cliente/</a></code></pre>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h2>Y que hay con las cuentas?</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h4>Registrate en un simple paso!</h4>
-                    <p>Para registrar tu propia cuenta para operar, debes llamar al metodo POST siguiendo el siguiente enlace: <pre><code><a> Cuentas </a></code></pre> enviando un JSON <pre><code class="json">{<br>&nbsp;&nbsp;"Titular": "Su ID personal"<br>}</code></pre>
-                    <p>La respuesta a esta llamada es un identificador del número de cuenta creada</p>
-                </div>
-                <div class="col">
-                    <h4>Consultar Cuenta</h4>
-                    <p>Puede consultar cualquiera de sus cuentas o la de algun conocido usando la siguiente URL:<pre><code><a> Consultar cuentas </a></code></pre> enviando el ID de la cuenta que se desea obtener.
-                <p>La respuesta es un JSON como el que sigue<pre><code class="json">{<br>&nbsp;&nbsp;"casa":19<br>&nbsp;&nbsp;"cbu":119<br>&nbsp;&nbsp;"fechaAlta":"2019-08-23T03:00:00Z[UTC]"<br>&nbsp;&nbsp;"idCliente":1<br>&nbsp;&nbsp;"idCuenta":1<br>}</code></pre>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h2 id="transferencias">Impuesto</h2>
-                    <p>Nuestro banco esta inscripto a los siguientes impuestos, conocelos con la siguiente URL:<pre><code><a> Impuestos </a></code></pre>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h2 id="transferencias">transactions</h2>
-                    <p>Nuestro banco acepta el uso de transferencias para operar, ya sea para pagar algun servicio o transferir dinero a tus padres, abuelos, hijos legitimos, no legitimos y por supuesto a tu pareja o tu amante! Conoce todas las transferencias que hemos realizado con el siguiente link:<pre><code><a href="rest/transactions"><span class="baseURL"></span>/rest/transactions</a></code></pre></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h2 id="transferencias">bonds</h2>
-                    <p>Consulta la disponibilidad de los bonos que poseemos con la siguiente URL:<pre><code><a> Bonos </a></code></pre>
+                <h1>Clientes</h1>
+                <div class="row">
+                    <div>
+                        <ul id="clientes">
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Detalle del cliente:</h2>
+                        <p id="id"></p>
+                        <p id="nombre"></p>
+                        <p id="apellido"></p>
+                        <p id="dni"></p>
+                        <p id="fechaNacimiento"></p>
+                        <p id="situacionEco"></p>
+                        <p id="telefono"></p>
+                        <p id="direccion"></p>
+                        
+                    </div>
                 </div>
             </div>
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
   </body>
 </html>
