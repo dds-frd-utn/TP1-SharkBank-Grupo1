@@ -62,7 +62,7 @@ public class ClienteRest {
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Cliente findById(@PathParam("id")long id){
+    public Cliente findById(@PathParam("id")int id){
         return ejbClienteFacade.find(id);
     }
 }

@@ -46,7 +46,7 @@ public class TransaccionRest {
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}")
-    public void edit(@PathParam("id")long id, Transacciones transaccion){
+    public void edit(@PathParam("id")int id, Transacciones transaccion){
         ejbTransaccionesFacade.edit(transaccion);
     }
     
@@ -54,7 +54,7 @@ public class TransaccionRest {
     @DELETE
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     @Path("/{id}")
-    public void remove(@PathParam("id")long id){
+    public void remove(@PathParam("id")int id){
         ejbTransaccionesFacade.remove( ejbTransaccionesFacade.find(id) );
     }
     
@@ -62,7 +62,7 @@ public class TransaccionRest {
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Transacciones findById(@PathParam("id")long id){
+    public Transacciones findById(@PathParam("id")int id){
         return ejbTransaccionesFacade.find(id);
     }
 }
