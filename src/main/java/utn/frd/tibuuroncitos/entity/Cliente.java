@@ -53,43 +53,36 @@ public class Cliente implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 11)
-    
+    @Size(min = 1, max = 11)  
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
     @NotNull
     @Size(max = 255)
-
     @Column(name = "apellido")
     private String apellido;
     @Basic(optional = false)
     @NotNull
     @Size(max = 255)
-
     @Column(name = "dni")
-    private Integer dni;
+    private int dni;
     @Basic(optional = false)
     @NotNull
     @Size(max = 8)
-    
     @Column(name = "fechaNacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
     @Basic(optional = false)
     @NotNull
-    
     @Column(name = "situacionEco")
     private String situacionEco;
     @Basic(optional = false)
     @NotNull
     @Size(max = 255)
-    
     @Column(name = "telefono")
-    private Integer telefono;
+    private int telefono;
     @Basic(optional = true)
     @Size(max = 20)
-    
     @Column(name = "direccion")
     private String direccion;
     @Size(max = 255)
@@ -136,11 +129,11 @@ public class Cliente implements Serializable {
         this.apellido = apellido;
     }
     
-    public Integer getDNI() {
+    public int getDNI() {
         return dni;
     }
     
-    public void setDNI(Integer dni) {
+    public void setDNI(int dni) {
         this.dni = dni;
     }
     
@@ -164,7 +157,7 @@ public class Cliente implements Serializable {
         return telefono;
     }
     
-    public void setTelefono(Integer Telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
     

@@ -33,7 +33,7 @@
               Clientes
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Nuevo Cliente</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#nuevoClienteModal">Nuevo Cliente</a>
               <a class="dropdown-item" href="#">Eliminar Cliente</a>
             </div>
           </li>
@@ -60,7 +60,7 @@
               Bonos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Nuevo Bono</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#nuevoBonoModal">Nuevo Bono</a>
               <a class="dropdown-item" href="#">Eliminar Bono</a>
             </div>
           </li>
@@ -224,5 +224,108 @@
         </div>
     </div>
     <!-- /#page-content -->
+    <!-- #modal pages -->
+    <!-- Nuevo Cliente -->
+    <div class="modal fade" id="nuevoClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nuevo Cliente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="nuevoClienteForm" action="rest/cliente" method="POST">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputNombreCliente">Nombre</label>
+                  <input type="text" class="form-control" name="inputNombreCliente" placeholder="David">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputApellidoCliente">Apellido</label>
+                  <input type="text" class="form-control" name="inputApellidoCliente" placeholder="Donayo">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputDNICliente">DNI</label>
+                <input type="text" class="form-control" name="inputDNICliente" placeholder="41134266">
+              </div>
+              <div class="form-group">
+                <label for="inputDateCliente">Fecha de nacimiento</label>
+                <input type="date" class="form-control" name="inputDateCliente">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Situación económica</label>
+                <select name="inputSituacionEcoCliente" class="form-control">
+                    <option selected>Elija una opción</option>
+                    <option>Desempleado</option>
+                    <option>Empresario/a con asalariadas/os</option>
+                    <option>Autónomo</option>
+                    <option>Cooperativista</option>
+                    <option>Asalariado</option>
+                    <option>En paro</option>
+                    <option>Trabajo a tiempo total</option>
+                    <option>Trabajo a tiempo parcial</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputTelefonoCliente">Teléfono</label>
+                  <input type="text" class="form-control" name="inputTelefonoCliente" placeholder="3487676692">
+                </div>
+              </div>
+                <div class="form-row">
+                    <label for="inputDireccionCliente">Dirección</label>
+                    <input type="text" class="form-control" name="inputDireccionCliente">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success" onclick="nuevoCliente()">Aceptar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Nuevo Cliente -->
+    <!-- Nuevo Bono -->
+    
+    <div class="modal fade" id="nuevoBonoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nuevo Bono</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="nuevoBonoForm">
+                <div class="form-row">
+                  <div class="control">
+                    <label for="inputPrecioCompra">Precio compra</label>
+                    <input class="input" type="number" id="inputPrecioCompra" placeholder="1400">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputVencimientoBono">Vencimiento</label>
+                    <input type="date" class="input" id="inputVencimientoBono">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPrecioPago">Precio pago</label>
+                  <input type="number" class="input" id="inputPrecioPago" placeholder="1400">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button class="btn btn-success" id="enviarBono">Aceptar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Nuevo Bono -->
+    <!-- /#modal pages -->
   </body>
 </html>

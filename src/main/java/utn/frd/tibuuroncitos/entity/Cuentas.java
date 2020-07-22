@@ -46,10 +46,10 @@ public class Cuentas implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(max = 255)
-    
     @Column(name = "balance")
     private int balance;
-
+    @NotNull
+    
     public Cuentas() {
     }
 
