@@ -56,6 +56,28 @@ $(document).ready(function(){
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify({"precioCompra": precioCompra, "precioPago": precioPago, "vencimiento": vencimiento}),
+            success: function (){
+                window.location.reload(true);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        })
+    });
+    $("#eliminarBono").click(function(x){
+        x.preventDefault();
+        let nroBono = $("#inputNroBono").val();
+        $.ajax({
+            url: "http://localhost:8080/tibuuroncitos/rest/bono/" + nroBono,
+            type: 'delete',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (){
+                window.location.reload(true);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
         })
     });
 });

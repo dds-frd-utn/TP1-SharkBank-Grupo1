@@ -61,7 +61,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" data-toggle="modal" data-target="#nuevoBonoModal">Nuevo Bono</a>
-              <a class="dropdown-item" href="#">Eliminar Bono</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#eliminarBonoModal">Eliminar Bono</a>
             </div>
           </li>
         </ul>
@@ -290,7 +290,6 @@
     </div>
     <!-- /Nuevo Cliente -->
     <!-- Nuevo Bono -->
-    
     <div class="modal fade" id="nuevoBonoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -326,6 +325,34 @@
       </div>
     </div>
     <!-- /Nuevo Bono -->
+    <!-- Eliminar Bono -->
+    <div class="modal fade" id="eliminarBonoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar Bono</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="EliminarBonoForm">
+                <div class="form-row">
+                  <div class="control">
+                    <label for="inputNroBono">Número de bono a eliminar</label>
+                    <input class="input" type="number" id="inputNroBono" placeholder="1400">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button class="btn btn-danger" id="eliminarBono">Eliminar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Eliminar Bono -->
     <!-- /#modal pages -->
   </body>
 </html>

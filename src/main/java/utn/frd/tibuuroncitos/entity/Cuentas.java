@@ -41,14 +41,14 @@ public class Cuentas implements Serializable {
     private Integer nroCuenta;
     @Basic(optional = false)
     @NotNull
+    @Size(max=225)
     @Column(name = "estadoCuenta")
     private String estadoCuenta;
     @Basic(optional = false)
     @NotNull
-    @Size(max = 255)
+
     @Column(name = "balance")
     private int balance;
-    @NotNull
     
     public Cuentas() {
     }
