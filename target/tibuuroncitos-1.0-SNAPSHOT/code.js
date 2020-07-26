@@ -43,7 +43,7 @@ $(document).ready(function(){
         });
     });
 });
-
+//JS Bonos api
 $(document).ready(function(){
     $("#enviarBono").click(function(x){
         x.preventDefault();
@@ -81,8 +81,85 @@ $(document).ready(function(){
         })
     });
 });
-
-
+//JS Cuentas api
+$(document).ready(function(){
+    $("#enviarCuenta").click(function(x){
+        x.preventDefault();
+        let balance = $("#inputBalance").val();
+        let estadoCuenta = $("#inputEstadoCuenta").val();
+        $.ajax({
+            url: "http://localhost:8080/tibuuroncitos/rest/cuenta",
+            type: 'post',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({"balance": balance, "estadoCuenta": estadoCuenta}),
+            success: function (){
+                window.location.reload(true);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        })
+    });
+    $("#eliminarCuenta").click(function(x){
+        x.preventDefault();
+        let nroCuenta = $("#inputNroCuenta").val();
+        $.ajax({
+            url: "http://localhost:8080/tibuuroncitos/rest/cuenta/" + nroCuenta,
+            type: 'delete',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (){
+                window.location.reload(true);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        })
+    });
+});
+$(document).ready(function(){
+    $("#enviarCliente").click(function(x){
+        x.preventDefault();
+        let nombre = $("#inputNombreCliente").val();
+        let apellido = $("#inputApellidoCliente").val();
+        let dni = $("#inputDNICliente").val();
+        let fechaNacimiento = $("#inputDateCliente").val() + "T03:00:00Z[UTC]";
+        let situacionEco = $("#inputSituacionEcoCliente").val();
+        let telefono = $("#inputTelefonoCliente").val();
+        let direccion = $("#inputDireccionCliente").val();
+         $.ajax({
+            url: "http://localhost:8080/tibuuroncitos/rest/cliente",
+            type: 'post',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({"nombre":nombre, "apellido":apellido, "DNI":dni, "fechaNacimiento":fechaNacimiento, "situacionEco":situacionEco, "telefono":telefono, "direccion":direccion}),
+            success: function (){
+                window.location.reload(true);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        })
+    });
+    $("#eliminarCliente").click(function(x){
+        x.preventDefault();
+        let nroCliente = $("#inputNroCliente").val();
+        $.ajax({
+            url: "http://localhost:8080/tibuuroncitos/rest/cliente/" + nroCliente,
+            type: 'delete',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (){
+                window.location.reload(true);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        })
+    });
+});
+//JS Clientes api
 
 function datosCliente(idCliente){
     $.ajax({
@@ -129,36 +206,6 @@ function datosBono(nroBono){
         $("#precioCompra").text(data['precioCompra']);
         $("#vencimiento").text(data['vencimiento']);
         $("#precioPago").text(data['precioPago']);
-    });
-}
-
-
-function nuevoCliente(){
-
-    // process the form
-    $("#nuevoClienteForm").submit(function() {
-
-        // get the form data
-        // there are many ways to get this data using jQuery (you can use the class or id also)
-        var formData = {
-            'nombre'             : $('input[name=inputNombreCliente]').val(),
-            'apellido'           : $('input[name=inputApellidoCliente]').val(),
-            'DNI'                : $('input[name=inputDNICliente]').val(),
-            'fechaNacimiento'    : $('input[name=inputDateCliente]').val(),
-            'situacionEco'       : $('input[name=inputSituacionEcoCliente]').val(),
-            'telefono'           : $('input[name=inputTelefonoCliente]').val(),
-            'direccion'          : $('input[name=inputDireccionCliente]').val()
-        };
-
-        // process the form
-        $.ajax({
-            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-            url         : 'http://localhost:8080/tibuuroncitos/rest/cliente', // the url where we want to POST
-            data        : formData, // our data object
-            dataType    : 'application/json', // what type of data do we expect back from the server
-            encode          : true
-        });
-        console.log("Llegue hasta aca");        
     });
 }
 

@@ -34,7 +34,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" data-toggle="modal" data-target="#nuevoClienteModal">Nuevo Cliente</a>
-              <a class="dropdown-item" href="#">Eliminar Cliente</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#eliminarClienteModal">Eliminar Cliente</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -51,8 +51,8 @@
               Cuentas
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Nueva Cuenta</a>
-              <a class="dropdown-item" href="#">Eliminar Cuenta</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#nuevaCuentaModal">Nueva Cuenta</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#eliminarCuentaModal">Eliminar Cuenta</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -236,29 +236,29 @@
             </button>
           </div>
           <div class="modal-body">
-            <form id="nuevoClienteForm" action="rest/cliente" method="POST">
+            <form id="nuevoClienteForm">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputNombreCliente">Nombre</label>
-                  <input type="text" class="form-control" name="inputNombreCliente" placeholder="David">
+                  <input type="text" class="input" id="inputNombreCliente" placeholder="David">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputApellidoCliente">Apellido</label>
-                  <input type="text" class="form-control" name="inputApellidoCliente" placeholder="Donayo">
+                  <input type="text" class="input" id="inputApellidoCliente" placeholder="Donayo">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputDNICliente">DNI</label>
-                <input type="text" class="form-control" name="inputDNICliente" placeholder="41134266">
+                <input type="text" class="input" id="inputDNICliente" placeholder="41134266">
               </div>
               <div class="form-group">
                 <label for="inputDateCliente">Fecha de nacimiento</label>
-                <input type="date" class="form-control" name="inputDateCliente">
+                <input type="date" class="input" id="inputDateCliente">
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>Situación económica</label>
-                <select name="inputSituacionEcoCliente" class="form-control">
+                <select class="input" id="inputSituacionEcoCliente">
                     <option selected>Elija una opción</option>
                     <option>Desempleado</option>
                     <option>Empresario/a con asalariadas/os</option>
@@ -272,16 +272,16 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputTelefonoCliente">Teléfono</label>
-                  <input type="text" class="form-control" name="inputTelefonoCliente" placeholder="3487676692">
+                  <input type="text" class="input" id="inputTelefonoCliente" placeholder="3487676692">
                 </div>
               </div>
                 <div class="form-row">
                     <label for="inputDireccionCliente">Dirección</label>
-                    <input type="text" class="form-control" name="inputDireccionCliente">
+                    <input type="text" class="input" id="inputDireccionCliente">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-success" onclick="nuevoCliente()">Aceptar</button>
+                  <button class="btn btn-success" id="enviarCliente">Aceptar</button>
                 </div>
             </form>
           </div>
@@ -289,6 +289,34 @@
       </div>
     </div>
     <!-- /Nuevo Cliente -->
+    <!-- /eliminar Cliente -->
+    <div class="modal fade" id="eliminarClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar Ciente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="eliminarClienteForm">
+                <div class="form-row">
+                  <div class="control">
+                    <label for="inputNroCliente">Número de cliente a eliminar</label>
+                    <input class="input" type="number" id="inputNroCliente" placeholder="1400">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button class="btn btn-danger" id="eliminarCliente">Eliminar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Eliminar Cliente -->
     <!-- Nuevo Bono -->
     <div class="modal fade" id="nuevoBonoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -353,6 +381,66 @@
       </div>
     </div>
     <!-- /Eliminar Bono -->
+    <!-- Nueva Cuenta -->
+    <div class="modal fade" id="nuevaCuentaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nueva Cuenta</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="nuevaCuentaForm">
+                <div class="form-row">
+                  <div class="control">
+                    <label for="inputBalance">Balance</label>
+                    <input class="input" type="number" id="inputBalance" placeholder="1400">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEstadoCuenta">Estado de la Cuenta</label>
+                  <input type="text" class="input" id="inputEstadoCuenta" placeholder="Habilitada">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button class="btn btn-success" id="enviarCuenta">Aceptar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Nueva Cuenta -->
+    <!-- Eliminar Cuenta -->
+    <div class="modal fade" id="eliminarCuentaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar Cuenta</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="eliminarCuentaForm">
+                <div class="form-row">
+                  <div class="control">
+                    <label for="inputNroCuenta">Número de cuenta a eliminar</label>
+                    <input class="input" type="number" id="inputNroCuenta" placeholder="1400">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button class="btn btn-danger" id="eliminarCuenta">Eliminar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /#Eliminar Cuenta -->
     <!-- /#modal pages -->
   </body>
 </html>

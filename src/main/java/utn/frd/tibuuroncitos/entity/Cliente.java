@@ -53,22 +53,22 @@ public class Cliente implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 11)  
+    //@Size(min = 1, max = 11)  
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
     @NotNull
-    @Size(max = 255)
+    //@Size(max = 255)
     @Column(name = "apellido")
     private String apellido;
     @Basic(optional = false)
     @NotNull
-    @Size(max = 255)
+    //@Size(max = 255)
     @Column(name = "dni")
     private int dni;
     @Basic(optional = false)
     @NotNull
-    @Size(max = 8)
+    //@Size(max = 8)
     @Column(name = "fechaNacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
@@ -78,14 +78,14 @@ public class Cliente implements Serializable {
     private String situacionEco;
     @Basic(optional = false)
     @NotNull
-    @Size(max = 255)
+    //@Size(max = 255)
     @Column(name = "telefono")
     private int telefono;
     @Basic(optional = true)
     @Size(max = 20)
     @Column(name = "direccion")
     private String direccion;
-    @Size(max = 255)
+    //@Size(max = 255)
 
     public Cliente() {
     }
@@ -94,7 +94,7 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public Cliente(Integer id, String nombre, String apellido, Integer dni, Date fechaNacimiento, String situacionEco, Integer telefono, String direccion ) {
+    public Cliente(Integer id, String nombre, String apellido, int dni, Date fechaNacimiento, String situacionEco, int telefono, String direccion ) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -153,7 +153,7 @@ public class Cliente implements Serializable {
         this.situacionEco = SituacionEco;
     }
     
-    public Integer getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
     
