@@ -42,7 +42,7 @@
               Transacciones
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Nueva Transacción</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#TipoTransaccionModal">Nueva Transacción</a>
               <a class="dropdown-item" href="#">Eliminar Transacción</a>
             </div>
           </li>
@@ -249,7 +249,7 @@
               </div>
               <div class="form-group">
                 <label for="inputDNICliente">DNI</label>
-                <input type="text" class="input" id="inputDNICliente" placeholder="41134266">
+                <input type="number" class="input" id="inputDNICliente" placeholder="41134266">
               </div>
               <div class="form-group">
                 <label for="inputDateCliente">Fecha de nacimiento</label>
@@ -257,22 +257,22 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label>Situación económica</label>
-                <select class="input" id="inputSituacionEcoCliente">
-                    <option selected>Elija una opción</option>
-                    <option>Desempleado</option>
-                    <option>Empresario/a con asalariadas/os</option>
-                    <option>Autónomo</option>
-                    <option>Cooperativista</option>
-                    <option>Asalariado</option>
-                    <option>En paro</option>
-                    <option>Trabajo a tiempo total</option>
-                    <option>Trabajo a tiempo parcial</option>
-                  </select>
+                    <label>Situación económica</label>
+                    <select class="input" id="inputSituacionEcoCliente">
+                        <option selected>Elija una opción</option>
+                        <option>Desempleado</option>
+                        <option>Empresario/a con asalariadas/os</option>
+                        <option>Autónomo</option>
+                        <option>Cooperativista</option>
+                        <option>Asalariado</option>
+                        <option>En paro</option>
+                        <option>Trabajo a tiempo total</option>
+                        <option>Trabajo a tiempo parcial</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputTelefonoCliente">Teléfono</label>
-                  <input type="text" class="input" id="inputTelefonoCliente" placeholder="3487676692">
+                  <input type="number" class="input" id="inputTelefonoCliente" placeholder="3487676692">
                 </div>
               </div>
                 <div class="form-row">
@@ -441,6 +441,66 @@
       </div>
     </div>
     <!-- /#Eliminar Cuenta -->
+    <!-- Tipo Transaccion -->
+    <div class="modal fade" id="TipoTransaccionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tipo de Transacción</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="tipoTransaccionForm">
+                <label for="inputMonto">Seleccione el tipo de transaccion</label>
+                <div class="form-row">
+                  <div class="control">
+                    <button class="btn btn-info" id="realizarDeposito">Depósito</button>
+                    <button class="btn btn-info" id="realizarExtraccion">Extracción</button>                   
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Tipo Transaccion -->
+    <!-- Nueva Transacción -->
+    <div class="modal fade" id="nuevaTransaccionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nueva Transacción</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="nuevaTransaccionForm">
+                <div class="form-row">
+                  <div class="control">
+                    <label for="inputMonto">Monto</label>
+                    <input class="input" type="number" id="inputMonto" placeholder="1400">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button class="btn btn-success" id="enviarTransaccion">Realizar transacción</button>
+                </div>
+                <label> Todas las transacciones empiezan en estado 'En Proceso' </label>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Nueva Transacción -->
+    <!-- Eliminar Transacción -->
+    
+    <!-- /Eliminar Transacción -->
     <!-- /#modal pages -->
   </body>
 </html>

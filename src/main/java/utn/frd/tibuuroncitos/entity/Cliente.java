@@ -52,8 +52,7 @@ public class Cliente implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    //@Size(min = 1, max = 11)  
+    @NotNull 
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
@@ -66,7 +65,6 @@ public class Cliente implements Serializable {
     //@Size(max = 255)
     @Column(name = "dni")
     private int dni;
-    @Basic(optional = false)
     @NotNull
     //@Size(max = 8)
     @Column(name = "fechaNacimiento")

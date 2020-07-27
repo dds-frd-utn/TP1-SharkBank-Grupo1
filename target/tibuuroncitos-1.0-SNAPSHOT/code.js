@@ -128,12 +128,28 @@ $(document).ready(function(){
         let situacionEco = $("#inputSituacionEcoCliente").val();
         let telefono = $("#inputTelefonoCliente").val();
         let direccion = $("#inputDireccionCliente").val();
+        console.log(nombre);
+        console.log(apellido);
+        console.log(dni);
+        console.log(fechaNacimiento);
+        console.log(situacionEco);
+        console.log(telefono);
+        console.log(direccion);
          $.ajax({
             url: "http://localhost:8080/tibuuroncitos/rest/cliente",
             type: 'post',
             contentType: 'application/json',
             dataType: 'json',
-            data: JSON.stringify({"nombre":nombre, "apellido":apellido, "DNI":dni, "fechaNacimiento":fechaNacimiento, "situacionEco":situacionEco, "telefono":telefono, "direccion":direccion}),
+            //data: JSON.stringify({"nombre": nombre, "apellido": apellido, "DNI": dni, "fechaNacimiento": fechaNacimiento, "situacionEco": situacionEco, "telefono": telefono, "direccion": direccion}),
+            data: JSON.stringify({
+                                    "apellido": nombre,
+                                    "DNI": dni,
+                                    "direccion": direccion,
+                                    "fechaNacimiento": fechaNacimiento,
+                                    "nombre": nombre,
+                                    "situacionEco": situacionEco,
+                                    "telefono": telefono
+                                }),
             success: function (){
                 window.location.reload(true);
             },
