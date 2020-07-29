@@ -118,6 +118,7 @@ $(document).ready(function(){
         })
     });
 });
+//JS Clientes api
 $(document).ready(function(){
     $("#enviarCliente").click(function(x){
         x.preventDefault();
@@ -175,7 +176,44 @@ $(document).ready(function(){
         })
     });
 });
-//JS Clientes api
+//JS Transacciones api
+$(document).ready(function(){
+    $("#enviarCuenta").click(function(x){
+        x.preventDefault();
+        let balance = $("#inputBalance").val();
+        let estadoCuenta = $("#inputEstadoCuenta").val();
+        $.ajax({
+            url: "http://localhost:8080/tibuuroncitos/rest/cuenta",
+            type: 'post',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({"balance": balance, "estadoCuenta": estadoCuenta}),
+            success: function (){
+                window.location.reload(true);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        })
+    });
+    $("#eliminarTransaccion").click(function(x){
+        x.preventDefault();
+        let nroTransaccion = $("#inputNroTransaccion").val();
+        $.ajax({
+            url: "http://localhost:8080/tibuuroncitos/rest/transaccion/" + nroTransaccion,
+            type: 'delete',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (){
+                window.location.reload(true);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        })
+    });
+});
+
 
 function datosCliente(idCliente){
     $.ajax({

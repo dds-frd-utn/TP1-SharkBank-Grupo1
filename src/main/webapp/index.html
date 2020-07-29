@@ -42,8 +42,8 @@
               Transacciones
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" data-toggle="modal" data-target="#TipoTransaccionModal">Nueva Transacción</a>
-              <a class="dropdown-item" href="#">Eliminar Transacción</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#tipoTransaccionModal">Nueva Transacción</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#eliminarTransaccionModal">Eliminar Transacción</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -442,7 +442,7 @@
     </div>
     <!-- /#Eliminar Cuenta -->
     <!-- Tipo Transaccion -->
-    <div class="modal fade" id="TipoTransaccionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="tipoTransaccionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -456,10 +456,52 @@
                 <label for="inputMonto">Seleccione el tipo de transaccion</label>
                 <div class="form-row">
                   <div class="control">
-                    <button class="btn btn-info" id="realizarDeposito">Depósito</button>
-                    <button class="btn btn-info" id="realizarExtraccion">Extracción</button>                   
+                    <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseNuevoDeposito" aria-expanded="false" aria-controls="collapseExample">Depósito</button>
+                    <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseNuevaExtraccion" aria-expanded="false" aria-controls="collapseExample">Extracción</button>                   
                   </div>
                 </div>
+                <!-- Collapse NuevaExtraccion -->
+                <div class="form-row">
+                    <div class="collapse" id="collapseNuevaExtraccion">
+                        <form id="nuevoDepositoForm">
+                            <div class="form-row">
+                              <div class="control">
+                                <label for="inputNroCuentaDeposito">Ingrese el número de cuenta</label>
+                                <input class="input" type="number" id="inputNroCuentaDeposito" placeholder="1400">
+                              </div>
+                              <div class="control">
+                                <label for="inputMontoDeposito">Monto</label>
+                                <input class="input" type="number" id="inputMontoDeposito" placeholder="1400">
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                              <button class="btn btn-success" id="enviarExtraccion">Realizar transacción</button>
+                            </div>
+                            <label> Todas las transacciones empiezan en estado 'En Proceso' </label>
+                        </form>
+                    </div>                   
+                </div>
+                <!-- /Collapse NuevaExtraccion -->
+                <!-- Collapse NuevoDeposito -->
+                <div class="form-row">
+                    <div class="collapse" id="collapseNuevoDeposito">
+                        <form id="nuevoDepositoForm">
+                            <div class="form-row">
+                              <div class="control">
+                                <label for="inputMonto">Monto</label>
+                                <input class="input" type="number" id="inputMonto" placeholder="1400">
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                              <button class="btn btn-success" id="enviarTransaccion">Realizar transacción</button>
+                            </div>
+                            <label> Todas las transacciones empiezan en estado 'En Proceso' </label>
+                        </form>
+                    </div>
+                </div>
+                <!-- /Collapse NuevoDeposito -->
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
                 </div>
@@ -469,37 +511,33 @@
       </div>
     </div>
     <!-- /Tipo Transaccion -->
-    <!-- Nueva Transacción -->
-    <div class="modal fade" id="nuevaTransaccionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Eliminar Transacción -->
+    <div class="modal fade" id="eliminarTransaccionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Nueva Transacción</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar Transacción</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form id="nuevaTransaccionForm">
+            <form id="eliminarTransaccionForm">
                 <div class="form-row">
                   <div class="control">
-                    <label for="inputMonto">Monto</label>
-                    <input class="input" type="number" id="inputMonto" placeholder="1400">
+                    <label for="inputNroTransaccion">Número de transaccion a eliminar</label>
+                    <input class="input" type="number" id="inputNroTransaccion" placeholder="1400">
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button class="btn btn-success" id="enviarTransaccion">Realizar transacción</button>
+                  <button class="btn btn-danger" id="eliminarTransaccion">Eliminar</button>
                 </div>
-                <label> Todas las transacciones empiezan en estado 'En Proceso' </label>
             </form>
           </div>
         </div>
       </div>
     </div>
-    <!-- /Nueva Transacción -->
-    <!-- Eliminar Transacción -->
-    
     <!-- /Eliminar Transacción -->
     <!-- /#modal pages -->
   </body>
