@@ -115,7 +115,7 @@ $(document).ready(function(){
             error: function (data) {
                 console.log('Error:', data);
             }
-        })
+        });
     });
 });
 //JS Clientes api
@@ -157,7 +157,7 @@ $(document).ready(function(){
             error: function (data) {
                 console.log('Error:', data);
             }
-        })
+        });
     });
     $("#eliminarCliente").click(function(x){
         x.preventDefault();
@@ -177,24 +177,82 @@ $(document).ready(function(){
     });
 });
 //JS Transacciones api
+var estadoTrans;
 $(document).ready(function(){
-    $("#enviarCuenta").click(function(x){
-        x.preventDefault();
-        let balance = $("#inputBalance").val();
-        let estadoCuenta = $("#inputEstadoCuenta").val();
+    $("#enviarDeposito").click(function(x){
+        x.preventDefault();   
+        let current_datetime = new Date();
+        let formatted_date = current_datetime.getFullYear() + "-" + appendLeadingZeroes(current_datetime.getMonth() + 1) + "-" + appendLeadingZeroes(current_datetime.getDate()) + "T03:00:00Z[UTC]";
+        let bandera = 0;
+        let nroCuentaDeposito = $("#inputNroCuentaDeposito").val();
+        estadoTrans = "En Proceso";
         $.ajax({
-            url: "http://localhost:8080/tibuuroncitos/rest/cuenta",
+            url:"http://localhost:8080/tibuuroncitos/rest/cuenta",
+            type: 'get'
+        }).done(function(data){
+            $.each(data, function(item) {
+                if(item['nroCuenta'] === nroCuentaDeposito){
+                    bandera = 1;
+                }
+            }); 
+            if(bandera === 0){
+                alert('El número de cuenta que utilizaste no es válido.');
+                estadoTrans = "Cancelada";
+                console.log(estadoTrans);
+            }
+        });
+        console.log(bandera);
+        console.log(estadoTrans);
+        let montoDeposito = $("#inputMontoDeposito").val();
+        let fechaDeposito = formatted_date;
+        let tipoTrans = "Depósito";
+        $.ajax({
+            url: "http://localhost:8080/tibuuroncitos/rest/transaccion",
             type: 'post',
             contentType: 'application/json',
             dataType: 'json',
-            data: JSON.stringify({"balance": balance, "estadoCuenta": estadoCuenta}),
+            data: JSON.stringify({
+                "estadoTrans": estadoTrans,
+                "fecha": fechaDeposito,
+                "monto": montoDeposito,
+                "tipoTrans": tipoTrans
+            }),
             success: function (){
                 window.location.reload(true);
             },
-            error: function (data) {
+            error: function () {
                 console.log('Error:', data);
             }
-        })
+        });
+        $.ajax({
+            url:"http://localhost:8080/tibuuroncitos/rest/cuenta/" + nroCuentaDeposito,
+            type: 'get'
+        }).done(function(data){
+            if(typeof data === 'undefined' || data === null || data['nroCuenta'] !== 'Habilitada'){
+                alert('El número de cuenta que utilizaste no es valido.');
+            }
+            else {
+                $.ajax({
+                    url: "http://localhost:8080/tibuuroncitos/rest/cuenta/" + nroCuentaDeposito,
+                    type: 'put',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        "nroCuenta": data['nroCuenta'],
+                        "estadoCuenta": data['estadoCuenta'] ,
+                        "balance": parseInt(data['balance']) + parseInt(montoDeposito)
+                    }),
+                    success: function (){
+                        window.location.reload(true);
+                    },
+                    error: function () {
+                        console.log('Error:', data);
+                    }  
+                });
+            }
+
+        });
+
     });
     $("#eliminarTransaccion").click(function(x){
         x.preventDefault();
@@ -214,7 +272,6 @@ $(document).ready(function(){
     });
 });
 
-
 function datosCliente(idCliente){
     $.ajax({
         url: 'http://localhost:8080/tibuuroncitos/rest/cliente/'+idCliente
@@ -228,6 +285,13 @@ function datosCliente(idCliente){
         $("#telefono").text(data['telefono']);
         $("#direccion").text(data['direccion']);
     });
+}
+
+function appendLeadingZeroes(n){
+  if(n <= 9){
+    return "0" + n;
+  }
+  return n
 }
 
 function datosTransaccion(nroTrans){

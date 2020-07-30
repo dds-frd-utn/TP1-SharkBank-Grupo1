@@ -453,7 +453,7 @@
           </div>
           <div class="modal-body">
             <form id="tipoTransaccionForm">
-                <label for="inputMonto">Seleccione el tipo de transaccion</label>
+                <label for="inputMonto">Seleccione el tipo de transacción:</label>
                 <div class="form-row">
                   <div class="control">
                     <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseNuevoDeposito" aria-expanded="false" aria-controls="collapseExample">Depósito</button>
@@ -461,8 +461,31 @@
                   </div>
                 </div>
                 <!-- Collapse NuevaExtraccion -->
-                <div class="form-row">
+                <div class="form-row" style="margin-top: 1rem;">
                     <div class="collapse" id="collapseNuevaExtraccion">
+                        <form id="nuevoDepositoForm">
+                            <div class="form-row">
+                              <div class="control">
+                                <label for="inputNroCuentaExtraccion">Ingrese el número de cuenta</label>
+                                <input class="input" type="number" id="inputNroCuentaExtraccion" placeholder="1400">
+                              </div>
+                              <div class="control">
+                                <label for="inputMontoExtraccion">Monto</label>
+                                <input class="input" type="number" id="inputMontoExtraccion" placeholder="1400">
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                              <button class="btn btn-success" id="enviarExtraccion">Realizar Extracción</button>
+                            </div>
+                            <label> Todas las transacciones empiezan en estado 'En Proceso' </label>
+                        </form>
+                    </div>                   
+                </div>
+                <!-- /Collapse NuevaExtraccion -->
+                <!-- Collapse NuevoDeposito -->
+                <div class="form-row" style="margin-top: 1rem;">
+                    <div class="collapse" id="collapseNuevoDeposito">
                         <form id="nuevoDepositoForm">
                             <div class="form-row">
                               <div class="control">
@@ -476,26 +499,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                              <button class="btn btn-success" id="enviarExtraccion">Realizar transacción</button>
-                            </div>
-                            <label> Todas las transacciones empiezan en estado 'En Proceso' </label>
-                        </form>
-                    </div>                   
-                </div>
-                <!-- /Collapse NuevaExtraccion -->
-                <!-- Collapse NuevoDeposito -->
-                <div class="form-row">
-                    <div class="collapse" id="collapseNuevoDeposito">
-                        <form id="nuevoDepositoForm">
-                            <div class="form-row">
-                              <div class="control">
-                                <label for="inputMonto">Monto</label>
-                                <input class="input" type="number" id="inputMonto" placeholder="1400">
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                              <button class="btn btn-success" id="enviarTransaccion">Realizar transacción</button>
+                              <button class="btn btn-success" id="enviarDeposito">Realizar Depósito</button>
                             </div>
                             <label> Todas las transacciones empiezan en estado 'En Proceso' </label>
                         </form>
