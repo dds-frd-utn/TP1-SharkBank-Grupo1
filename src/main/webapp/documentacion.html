@@ -1,0 +1,71 @@
+<html style="background-color: gray">
+    <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+      <title>Documentación</title>
+    </head>
+    <body>
+        <section class="fondo_contenido">   
+                <section class="contenido">
+                    <h1>Documentación</h1>
+                        <em>Entre nuestros servicios tenemos:</em>
+                        <ol>
+                            <li>Administración de clientes</li>
+                            <li>Administración de cuentas</li>
+                            <li>Administración de transacciones</li>
+                            <li>Administración de bonos</li>
+                        </ol>
+                            
+                        <div class="clientes">
+                            <h3>Administración de clientes</h3>
+                            <p><a href="http://localhost:8080/tibuuroncitos/rest/cliente" target="_blank">Lista de clientes existentes</a></p>
+                            <p>
+                                Si se desea obtener los datos de un cliente en particular, debe también ingresar su id en la dirección:<br/>
+                                <em>http://localhost:8080/tibuuroncitos/rest/cliente/<strong>{id}</strong></em><br/>
+                            </p>
+                        </div>
+                        <div class="cuentas">
+                            <h3>Administración de cuentas</h3>
+                            <p><a href="http://localhost:8080/tibuuroncitos/rest/cuenta" target="_blank">Lista de cuentas existentes</a></p>
+                            <p>
+                                Si se desea obtener los datos de una cuenta, entonces se debe especificar el número de cuenta del mismo, de la siguiente manera:<br/>
+                                <em>hhttp://localhost:8080/tibuuroncitos/rest/cuenta/<strong>{nroCuenta}</strong></em><br/>
+                                <br/>
+                            </p>
+                        </div>
+                        
+                        <div class="transacciones">
+                            <h3>Administración de transacciones</h3>
+                            <p><a href="http://localhost:8080/tibuuroncitos/rest/transaccion" target="_blank">Lista de transacciones existentes</a></p>
+                            <p>
+                                Si se desea obtener los datos de una transacción, entonces se debe especificar el número de transacción de la misma, de la siguiente manera:<br/>
+                                <em>http://localhost:8080/tibuuroncitos/rest/transaccion<strong>{nroTransaccion}</strong></em><br/>
+                                <br/>
+                            </p>
+                            <p>
+                                Por otra parte, los movimientos pueden ser de dos tipos:
+                                <ol>
+                                    <li>EXTRACCIÓN</li>
+                                    <li>DEPÓSITO</li>
+                                </ol>
+                            </p>
+                        </div>
+                        
+                        <div class="bonos">
+                            <h3>Administración de bonos</h3>
+                            <p><a href="http://localhost:8080/tibuuroncitos/rest/bono" target="_blank">Lista de bonos existentes</a></p>
+                            <p>
+                                Si se desea obtener los datos de un bono, entonces se debe especificar el número de bono de la misma, de la siguiente manera:<br/>
+                                <em>http://localhost:8080/tibuuroncitos/rest/bono<strong>{nroBono}</strong></em><br/>
+                                <br/>
+                            </p>
+                        </div>
+                </section>
+        </section>
+
+    </body>
+</html>
