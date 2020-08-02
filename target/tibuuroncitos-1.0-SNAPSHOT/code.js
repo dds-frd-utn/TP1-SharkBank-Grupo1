@@ -190,6 +190,68 @@ $(document).ready(function(){
         });
 
     });
+    
+    $("#enviarExtraccion").click(function(x){
+        x.preventDefault();   
+        let current_datetime = new Date();
+        let formatted_date = current_datetime.getFullYear() + "-" + appendLeadingZeroes(current_datetime.getMonth() + 1) + "-" + appendLeadingZeroes(current_datetime.getDate()) + "T03:00:00Z[UTC]";
+        
+        let nroCuentaExtraccion = $("#inputNroCuentaExtraccion").val();
+        let montoExtraccion = $("#inputMontoExtraccion").val();
+        let fechaExtraccion = formatted_date;
+        let tipoTrans = "Extracción";
+        let estadoTrans = "En Proceso";
+        $.ajax({
+            url: "http://localhost:8080/tibuuroncitos/rest/transaccion",
+            type: 'post',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
+                "estadoTrans": estadoTrans,
+                "fecha": fechaExtraccion,
+                "monto": montoExtraccion,
+                "tipoTrans": tipoTrans
+            }),
+            success: function (){
+                window.location.reload(true);
+            },
+            error: function () {
+                console.log('Error:', data);
+            }
+        });
+        
+        $.ajax({
+            url:"http://localhost:8080/tibuuroncitos/rest/cuenta/" + nroCuentaExtraccion,
+            type: 'get'
+        }).done(function(data){
+            if (typeof data !== 'undefined' && data !== null && data['estadoCuenta'] === 'Habilitada' && data['balance'] - montoExtraccion >= 0){
+                $.ajax({
+                    url: "http://localhost:8080/tibuuroncitos/rest/cuenta/" + nroCuentaExtraccion,
+                    type: 'put',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        "nroCuenta": data['nroCuenta'],
+                        "estadoCuenta": data['estadoCuenta'] ,
+                        "balance": parseInt(data['balance']) - parseInt(montoExtraccion)
+                    }),
+                    success: function (){
+                        window.location.reload(true);
+                    },
+                    error: function () {
+                        console.log('Error:', data);
+                    }  
+                });
+            }else{
+                alert('La cuenta a la que usted quiere extraer dinero, no esta disponible o el monto de extraccion supera el balance de la cuenta.');
+                window.location.reload(true);
+                actualizarTransaccion();
+            }
+
+        });
+
+    });
+    
     $("#eliminarTransaccion").click(function(x){
         x.preventDefault();
         let nroTransaccion = $("#inputNroTransaccion").val();
