@@ -6,16 +6,21 @@
 $(document).ready(function(){
     var ID = sessionStorage.getItem('idCliente'); 
     $.ajax({
-        url: 'http://localhost:8080/tibuuroncitos/rest/cliente/' + ID
+        url: 'http://localhost:8080/tibuuroncitos/rest/cliente/' + ID,
     }).done(function(data){
-        $("#id").text(data['id']);
-        $("#nombre").text(data['nombre']);
-        $("#apellido").text(data['apellido']);
-        $("#dni").text(data['DNI']);
-        $("#fechaNacimiento").text(data['fechaNacimiento']);
-        $("#situacionEco").text(data['situacionEco']);
-        $("#telefono").text(data['telefono']);
-        $("#direccion").text(data['direccion']);
+        if (typeof data !== 'undefined' && data !== null){
+            $("#id").text(data['id']);
+            $("#nombre").text(data['nombre']);
+            $("#apellido").text(data['apellido']);
+            $("#dni").text(data['DNI']);
+            $("#fechaNacimiento").text(data['fechaNacimiento']);
+            $("#situacionEco").text(data['situacionEco']);
+            $("#telefono").text(data['telefono']);
+            $("#direccion").text(data['direccion']);  
+        } else {
+            alert('Usuario no valido');
+            window.location.replace("http://localhost:8080/tibuuroncitos");
+        }
     });
 });
 
